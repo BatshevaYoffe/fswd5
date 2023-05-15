@@ -83,13 +83,15 @@ const Login = () => {
             .then(response => response.json())
             .then(json => {
                 for (let i in json) {
+                    let num = g(json[i].address.geo.lat)
+
                     console.log(json[i].username)
                     if (json[i].username == inputs.name) {
-                        console.log((json[i].address.geo.lat))
-                        let num = g(json[i].address.geo.lat)
-                        if (num == inputs.password) {
-                            break;
-                        }
+                        console.log("пгсыыыыыыыы")
+                        // let num = g(json[i].address.geo.lat)
+                        // if (num == inputs.password) {
+                        //     break;
+                        // }
 
                     }
                 }}
