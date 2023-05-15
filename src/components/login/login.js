@@ -61,21 +61,31 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 //     );}}export default Login;
 
 const Login = () => {
-
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({
+        name: "",
+        password: "",
+    });
+    // const [inputs, setInputs] = useState({});
     const navigate = useNavigate();
     const f = () => navigate("/login");
     const handleChangeName = (event) => {
         const name = event.target.username;
-        const value = event.target.password;
-        setInputs(values => ({ ...values, [name]: value }))
+        setInputs(prev => {
+            return { prev, name: name }
+        });
+        //inputs => ({name:name,password:value}));
     }
-    // const handleChangePass = (event) => {
-    //     this.setState({ pass: event.target.pass });
-    // }
+    const handleChangePass = (event) => {
+        const value = event.target.password;
+        alert(value)
+        setInputs(prev => {
+            return { prev, password: value }
+        });
+    }
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(inputs);
+        alert(inputs.name);
+
 
     }
     return <div>
@@ -83,11 +93,11 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <label>Username </label>
-                    <input type="text" name="username" value={inputs.username} onChange={handleChangeName} />
+                    <input type="text" name="username" value={inputs.name} onChange={handleChangeName} />
                 </div>
                 <div className="input-container">
                     <label>Password </label>
-                    <input type="password" name="password" value={inputs.password} onChange={handleChangeName} />
+                    <input type="password" name="password" value={inputs.password} onChange={handleChangePass} />
                 </div>
                 <div className="button-container">
                     <input type="submit" value="Submit" />
