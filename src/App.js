@@ -2,7 +2,8 @@ import React from 'react';
 //import './style.css';
 import { Outlet } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link, Navigate , useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import Login from './components/login/login'
 
 export default function App() {
   return (
@@ -19,12 +20,12 @@ export default function App() {
   );
 }
 
-const Login = () => (
-  <div>
-    login
-    <Link to="/content">login</Link>
-  </div>
-);
+// const Login = () => (
+//   <div>
+//     login
+//     <Link to="/content">login</Link>
+//   </div>
+// );
 
 const Content = () => (
   <div>
@@ -43,7 +44,7 @@ const A = (props) => {
 
   const f = () => navigate("/login");
 
-    return <div>A <button type="button" onClick={f}>fdgh</button> </div>;
+  return <div>A <button type="button" onClick={f}>fdgh</button> </div>;
 };
 
 const B = () => <div>B</div>;

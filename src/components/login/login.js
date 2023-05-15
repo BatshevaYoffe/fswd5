@@ -63,33 +63,31 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 const Login = () => {
     const navigate = useNavigate();
     const f = () => navigate("/login");
-
-return(
-
-    <div>
-        <div className="form">
-            <form >
-                {/* onSubmit={handleSubmit}> */}
-                <div className="input-container">
-                    <label>Username </label>
-                    <input type="text" name="uname" required />
-                    {/* {renderErrorMessage("uname")} */}
-                </div>
-                <div className="input-container">
-                    <label>Password </label>
-                    <input type="password" name="pass" required />
-                    {/* {renderErrorMessage("pass")} */}
-                </div>
-                <div className="button-container">
-                    <input type="submit" />
-                </div>
-            </form>
-            <button type="button" onClick={f}>fdgh</button>
-
-        </div>
-        <div>
-            login
-            <Link to="/content">login</Link>
-        </div>
+  
+    return <div>
+      <div className="form">
+        <form >
+          {/* onSubmit={handleSubmit}> */}
+          <div className="input-container">
+            <label>Username </label>
+            <input type="text" name="uname" required />
+            {/* {renderErrorMessage("uname")} */}
+          </div>
+          <div className="input-container">
+            <label>Password </label>
+            <input type="password" name="pass" required />
+            {/* {renderErrorMessage("pass")} */}
+          </div>
+          <div className="button-container">
+            <input type="submit" />
+          </div>
+        </form>
+        <button type="button" onClick={f}>fdgh</button>
+  
+      </div>
+      <div>
+        login
+        <Link to="/content">login</Link>
+      </div>
     </div>
-);} 
+  };
