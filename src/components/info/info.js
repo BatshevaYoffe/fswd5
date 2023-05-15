@@ -27,9 +27,9 @@ const Info = (props) => {
       <p>Phone: {user.phone}</p>
       <p>Website: {user.website}</p>
       <h3>Address:</h3>
-      {/* <p>{user.address.street}, {user.address.suite}</p> */}
+      {/* <p>{user.address.street}</p><p> {user.address.suite}</p>  */}
       {/* <p>{user.address.city}, {user.address.zipcode}</p> */}
-      {/* <p>Lat: {user.address.geo.lat}, Lng: {user.address.geo.lng}</p> */}
+      {/* <p>Lat: {user.address.geo.lat}, Lng: {user.address.geo.lng}</p>
       <h3>Company:</h3>
       {/* <p>{user.company.name}</p>
       <p>{user.company.catchPhrase}</p>
