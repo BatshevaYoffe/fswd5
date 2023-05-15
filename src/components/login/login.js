@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import './style.css';
-import { Outlet } from 'react-router-dom';
+import { Outlet, json } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 // const [inputs, setInputs] = useState({});
@@ -69,25 +69,57 @@ const Login = () => {
     const navigate = useNavigate();
     const f = () => navigate("/login");
     const handleChangeName = (event) => {
-        const name = event.target.username;
-        setInputs(prev => {
-            return { prev, name: name }
-        });
-        //inputs => ({name:name,password:value}));
+        const name = event.target.value;
+        setInputs({ name: name });
     }
     const handleChangePass = (event) => {
-        const value = event.target.password;
-        alert(value)
-        setInputs(prev => {
-            return { prev, password: value }
-        });
+        const value = event.target.value;
+        setInputs({ password: value });
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert(inputs.name);
+        alert(inputs.password);
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(response => response.json())
+            .then(json => {
+                for (let i in json) {
+                    console.log(json[i].username)
+                    if (json[i].username == inputs.name) {
+                        console.log((json[i].address.geo.lat))
+                        let num = g(json[i].address.geo.lat)
+                        if (num == inputs.password) {
+                            break;
+                        }
 
+                    }
+                }}
+                )
+    }
+    const g = (num) => {
+        console.log("gooooooooooood");
+
+        let str = num.toString(); // ממיר את המספר למחרוזת
+        let decimalIndex = str.indexOf('.'); // מוצא את המיקום של הנקודה במחרוזת
+        let decimalPart = str.substring(decimalIndex + 1); // מחזיר את החלק העשרוני של המספר
+        console.log(decimalPart); // יחזיר 3159
+        return decimalPart;
 
     }
+    const A = (props) => {
+        const navigate = useNavigate();
+
+        const f = () => navigate("/content");
+        fetch('https://jsonplaceholder.typicode.com/photos')
+            .then(response => response.json())
+            .then(json => console.log(json.albumId))
+        return <div>A <button type="button" onClick={f}>fdgh</button> </div>;
+    };
+
+    //       <script>
+    //       fetch('https://jsonplaceholder.typicode.com/photos')
+    //         .then(response => response.json())
+    //         .then(json =>console.log(json.albumId))
+    //   </script>
     return <div>
         <div className="form">
             <form onSubmit={handleSubmit}>
