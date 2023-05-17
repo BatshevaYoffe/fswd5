@@ -10,7 +10,6 @@ const Info = () => {
 
     useEffect(() => {
         const objectData = JSON.parse(localStorage.getItem('myData'));
-        console.log(objectData);
         setMyObject(objectData);
     }, []);
 
