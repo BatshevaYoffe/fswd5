@@ -1,39 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 //import './style.css';
 import { Outlet, json } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const Info = (props) => {
+    const [user, setMyObject] = useState({});
 
-    const [user,setUser] = useState({})
+    useEffect(() => {
+        const objectData = JSON.parse(localStorage.getItem('myData'));
+        setMyObject(objectData);
+    }, []);
 
-    const setUserInfo = (user) => {
-        setUser(user);
-    }
-        fetch(`https://jsonplaceholder.typicode.com/users/1`)
-        // fetch(`https://jsonplaceholder.typicode.com/users${props.userId}`)
-             .then(response => response.json())
-            .then(json => {  setUserInfo(json) } );
+    return(
+        <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title>{user.name}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{user.username}</Card.Subtitle>
+            <Card.Text>
+              <p>Email: {user.email}</p>
+              <p>Phone: {user.phone}</p>
+              <p>Website: {user.website}</p>
+            </Card.Text>
+            <Card.Title>Address:</Card.Title>
+            {/* <ListGroup className="list-group-flush">
+              <ListGroupItem>{user.address.street}, {user.address.suite}</ListGroupItem>
+              <ListGroupItem>{user.address.city}, {user.address.zipcode}</ListGroupItem>
+              <ListGroupItem>Lat: {user.address.geo.lat}, Lng: {user.address.geo.lng}</ListGroupItem>
+            </ListGroup> */}
+            <Card.Title>Company:</Card.Title>
+            <Card.Text>
+              {/* <p>{user.company.name}</p>
+              <p>{user.company.catchPhrase}</p>
+              <p>{user.company.bs}</p> */}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+    );
+}
+export default Info;
 
-    return <div>
-
-        Infoooooooooooooooo
-        {user.id}
-        <div>
-      <h2>{user.name}</h2>
-      <p>Username: {user.username}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
-      <p>Website: {user.website}</p>
-      <h3>Address:</h3>
-      {/* <p>{user.address.street}</p><p> {user.address.suite}</p>  */}
-      {/* <p>{user.address.city}, {user.address.zipcode}</p> */}
-      {/* <p>Lat: {user.address.geo.lat}, Lng: {user.address.geo.lng}</p>
-      <h3>Company:</h3>
-      {/* <p>{user.company.name}</p>
-      <p>{user.company.catchPhrase}</p>
-      <p>{user.company.bs}</p> */}
-    </div>
-    </div>
-}; export default Info;

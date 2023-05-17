@@ -27,32 +27,3 @@ export default function App() {
   );
 }
 
-// const Content = () => (
-//   <div>
-//     {/* <Link to="a"> to A</Link>
-//     <br />
-//     <Link to="b"> to B</Link>
-//     <br /> */}
-//     <Link to="posts">Posts</Link>
-//       <br />
-//       <Link to="albums">Albums</Link>
-//       <br />
-//       <Link to="info">Info</Link>
-//       <br />
-//       <Link to="todos">Todos</Link>
-//       <br />
-//     <Link to="/"> to Login</Link>
-//     <div>content</div>
-//     <Outlet />
-//   </div>
-// );
-
-const A = (props) => {
-  const navigate = useNavigate();
-
-  const f = () => navigate("/login");
-
-  return <div>A <button type="button" onClick={f}>fdgh</button> </div>;
-};
-
-const B = () => <div>B</div>;
