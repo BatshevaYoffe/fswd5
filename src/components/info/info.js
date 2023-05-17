@@ -5,9 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
-
-
-
 const Info = () => {
     const [user, setMyObject] = useState({});
 
@@ -15,7 +12,6 @@ const Info = () => {
         const objectData = JSON.parse(localStorage.getItem('myData'));
         console.log(objectData);
         setMyObject(objectData);
-
     }, []);
 
     return!user.name?(<div>bdika</div>):(<div>

@@ -1,0 +1,4 @@
+.nav-links .nav-links-row {
+    display: flex;
+    justify-content: space-between;
+  }
