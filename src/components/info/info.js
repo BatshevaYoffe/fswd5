@@ -15,10 +15,10 @@ const Info = () => {
         const objectData = JSON.parse(localStorage.getItem('myData'));
         console.log(objectData);
         setMyObject(objectData);
+
     }, []);
 
-    return(
-        <div>
+    return!user.name?(<div>bdika</div>):(<div>
           <h1>{user.name}</h1>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
