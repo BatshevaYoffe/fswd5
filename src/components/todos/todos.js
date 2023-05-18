@@ -1,25 +1,26 @@
 import { Outlet, json, useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 const Todos = (props) => {
-    const [user, setMyObject] = useState({});
+    // const [user, setMyObject] = useState({});
     const [userTodos, setUserTodos] = useState([]);
+    const { id } = useParams();
+
+    // useEffect(() => {
+    //     const objectData = JSON.parse(localStorage.getItem('myData'));
+    //     setMyObject(objectData);
+    // }, []);
 
     useEffect(() => {
-        const objectData = JSON.parse(localStorage.getItem('myData'));
-        setMyObject(objectData);
-    }, []);
-
-    useEffect(() => {
-        if ((user && user.id)) {
+        // if ((user && user.id)) {
             const objectData = JSON.parse(localStorage.getItem('myUserTodos'));
             if (objectData) {
                 setUserTodos(objectData);
             }
             else {
-                fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/todos`)
+                fetch(`https://jsonplaceholder.typicode.com/users/${id}/todos`)
                     .then(response => response.json())
                     .then(data => {
                         setUserTodos(data);
@@ -27,8 +28,8 @@ const Todos = (props) => {
                     })
                     .catch(error => console.log(error));
             }
-        }
-    }, [user]);
+        // }
+    }, []);
 
     const handlerChange = ((id) => {
         console.log(id);
@@ -65,9 +66,8 @@ const Todos = (props) => {
         setUserTodos(newUserTodos);
     })
 
-    return (!user.name) ? <div>bdika</div> :
-        (<div>
-            <h2>Active Users {user.name}</h2>
+    return (<div>
+            {/* <h2>Active Users {user.name}</h2> */}
             <select onChange={handlerChangeSelect}>
                 <option value="serial" > serial </option>
                 <option value="execution"> execution </option>
