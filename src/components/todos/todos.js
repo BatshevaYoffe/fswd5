@@ -13,13 +13,20 @@ const Todos = (props) => {
     }, []);
 
     useEffect(() => {
-        if (user && user.id) {
-            fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/todos`)
-            .then(response => response.json())
-            .then(data => {
-                setUserTodos(data);
-            })
-            .catch(error => console.log(error));
+        if ((user && user.id)) {
+            const objectData = JSON.parse(localStorage.getItem('myUserTodos'));
+            if (objectData) {
+                setUserTodos(objectData);
+            }
+            else {
+                fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/todos`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setUserTodos(data);
+                        localStorage.setItem("myUserTodos", JSON.stringify(data));
+                    })
+                    .catch(error => console.log(error));
+            }
         }
     }, [user]);
 
@@ -28,6 +35,7 @@ const Todos = (props) => {
         let newUserTodos = userTodos.map(todos => (
             (todos.id == id) ? { ...todos, completed: !todos.completed } : todos)
         );
+        localStorage.setItem("myUserTodos", JSON.stringify(newUserTodos));
         setUserTodos(newUserTodos)
     })
 
@@ -45,7 +53,7 @@ const Todos = (props) => {
                 break;
             case "alphabetical":
                 newUserTodos = newUserTodos.sort(function (a, b) {
-                    let x = a.title,y = b.title;
+                    let x = a.title, y = b.title;
                     return x == y ? 0 : x > y ? 1 : -1;
                 });
                 break;
@@ -53,6 +61,7 @@ const Todos = (props) => {
                 newUserTodos = newUserTodos.sort(() => Math.random() - 0.5)
                 break;
         }
+        localStorage.setItem("myUserTodos", JSON.stringify(newUserTodos));
         setUserTodos(newUserTodos);
     })
 
