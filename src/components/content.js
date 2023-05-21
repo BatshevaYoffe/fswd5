@@ -23,17 +23,12 @@ const Content = () => {
         <header>{user.username}</header>
         <Link to="posts">Posts</Link>
         <br />
-        <Link to="albums">Albums</Link>
+        <Link to={`albums/${user.id}`}>Albums</Link>
         <br />
-        {/* <Link to={{
-            pathname: '/info',
-            state: { data: user }
-        }}>Go to My Page</Link> */}
         <br />
-
         <Link to="info" >Info</Link>
         <br />
-        <Link to="todos" state={{ myVariable:user.id }} >Todos</Link>
+        <Link to={`todos/${user.id}`}>Todos</Link>
         <br />
         <Link to="/" onClick={deleteUser}>Logout</Link>
         <Outlet />

@@ -1,83 +1,73 @@
 import { Outlet, json, useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 const Todos = (props) => {
-    const [user, setMyObject] = useState({});
+    // const [user, setMyObject] = useState({});
+    const [userTodos, setUserTodos] = useState([]);
+    const { id } = useParams();
+
+    // useEffect(() => {
+    //     const objectData = JSON.parse(localStorage.getItem('myData'));
+    //     setMyObject(objectData);
+    // }, []);
 
     useEffect(() => {
-        const objectData = JSON.parse(localStorage.getItem('myData'));
-        setMyObject(objectData);
+        // if ((user && user.id)) {
+            const objectData = JSON.parse(localStorage.getItem('myUserTodos'));
+            if (objectData) {
+                setUserTodos(objectData);
+            }
+            else {
+                fetch(`https://jsonplaceholder.typicode.com/users/${id}/todos`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setUserTodos(data);
+                        localStorage.setItem("myUserTodos", JSON.stringify(data));
+                    })
+                    .catch(error => console.log(error));
+            }
+        // }
     }, []);
-
-    const [activeUsers, setActiveUsers] = useState([]);
-
-    useEffect(() => {
-
-
-        fetch(`https://jsonplaceholder.typicode.com/users/7/todos`)
-            .then(response => response.json())
-            .then(data => {
-                // const activeUsersData = data.filter(user => user.user.id);
-                console.log(data);
-                setActiveUsers(data);
-            })
-            .catch(error => console.log(error));
-    }, [user]);
 
     const handlerChange = ((id) => {
         console.log(id);
-        let newActiveUsers = activeUsers.map(active => (
-            (active.id == id) ? { ...active, completed: !active.completed } : active)
+        let newUserTodos = userTodos.map(todos => (
+            (todos.id == id) ? { ...todos, completed: !todos.completed } : todos)
         );
-        console.log(newActiveUsers);
-        setActiveUsers(newActiveUsers)
-        //activeUsers.find(activeUser).completed;//=!activeUsers.find(activeUser).completed;
+        localStorage.setItem("myUserTodos", JSON.stringify(newUserTodos));
+        setUserTodos(newUserTodos)
     })
 
     const handlerChangeSelect = ((event) => {
         let choice = event.target.value;
-        let newActiveUsers = activeUsers;
-        console.log(choice);
+        let newUserTodos = [...userTodos];
         switch (choice) {
-            case 'serial':{
-                console.log("serial");
-                newActiveUsers=newActiveUsers.sort((a,b)=>a.id<b.id?a.id:b.id);
-                console.log(newActiveUsers);
+            case 'serial':
+                newUserTodos = newUserTodos.sort((a, b) => { return a.id - b.id });
                 break;
-        }
             case "execution":
-                console.log("serial");
-
+                const newUsertrue = newUserTodos.filter(todos => todos.completed === true);
+                const newUserfalse = newUserTodos.filter(todos => todos.completed === false);
+                newUserTodos = newUsertrue.concat(newUserfalse);
                 break;
             case "alphabetical":
-                console.log("serial");
-                console.log(newActiveUsers);
-                newActiveUsers.sort(function (a, b) {
-                    let x = a.title,
-                        y = b.title;
+                newUserTodos = newUserTodos.sort(function (a, b) {
+                    let x = a.title, y = b.title;
                     return x == y ? 0 : x > y ? 1 : -1;
-                
                 });
-                console.log(newActiveUsers);
                 break;
-
             case "random":
-                                console.log("serial");
-
+                newUserTodos = newUserTodos.sort(() => Math.random() - 0.5)
                 break;
-
-       }
-        setActiveUsers(newActiveUsers);
-        console.log(activeUsers);
+        }
+        localStorage.setItem("myUserTodos", JSON.stringify(newUserTodos));
+        setUserTodos(newUserTodos);
     })
 
-    return (
-        <div>
-                   { console.log(activeUsers)}
-
-            <h2>Active Users</h2>
+    return (<div>
+            {/* <h2>Active Users {user.name}</h2> */}
             <select onChange={handlerChangeSelect}>
                 <option value="serial" > serial </option>
                 <option value="execution"> execution </option>
@@ -85,20 +75,19 @@ const Todos = (props) => {
                 <option value="random"> random </option>
             </select>
             <ul>
-                {activeUsers.map(activeUser => (
-                    <li key={activeUser.userId}>
+                {userTodos.map(todos => (
+                    <li key={todos.userId}>
                         <input
                             type="checkbox"
-                            checked={activeUser.completed}
-                            // onChange={() => setActiveUsers(prev=>{...prev,activeUsers.find(activeUser).completed=!activeUsers.find(activeUser).completed})}
-                            onChange={() => handlerChange(activeUser.id)}
+                            checked={todos.completed}
+                            onChange={() => handlerChange(todos.id)}
                         />
-                        <span>{activeUser.title}</span>
+                        <span>{todos.title}</span>
                     </li>
                 ))}
             </ul>
         </div>
-    );
+        );
 };
 
 export default Todos;

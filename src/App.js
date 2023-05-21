@@ -16,10 +16,10 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="content" element={<Content />}>
-          <Route path="albums" element={<Album />} />
+          <Route path="albums/:id" element={<Album />} />
           <Route path="posts" element={<Post />} />
           <Route path="info" element={<Info />} />
-          <Route path="todos" element={<Todos />} />
+          <Route path="todos/:id" element={<Todos />} />
 
         </Route>
       </Routes>
