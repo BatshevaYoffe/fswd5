@@ -15,6 +15,8 @@ const Todos = (props) => {
 
     useEffect(() => {
         // if ((user && user.id)) {
+            console.log(id);
+
             const objectData = JSON.parse(localStorage.getItem('myUserTodos'));
             if (objectData) {
                 setUserTodos(objectData);
