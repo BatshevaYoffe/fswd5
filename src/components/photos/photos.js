@@ -5,20 +5,32 @@ import { useParams, BrowserRouter as Router, Routes, Route } from 'react-router-
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Photos = () => {
-    const [userAlbums, setUserAlbums] = useState([]);
     const { id } = useParams();
     const [photos, setPhotos] = useState([]);
+    const [showPhotos, setShowedPhotos] = useState(5); //  מספר התמונות המוצג בכל שלב ניתן לשנות
+
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/album/6/photos`)
+        console.log(id);
+        fetch(`https://jsonplaceholder.typicode.com/album/${id}/photos`)
             .then(response => response.json())
             .then(data => {
                 setPhotos(data);
             })
 
     }, []);
+    const handleShowMorePhotos = () => {
+        setShowedPhotos(prevPhotos => prevPhotos + 5); // הוספת 5 תמונות נוספות בכל לחיצה
+    };
 
-    return <div><h1>{photos.thumbnailUrl}</h1>
-        <div>{photos.map(photos => (<img src={photos.thumbnailUrl} alt={photos.title}></img>))}</div>
+    return <div>
+        <div>
+            {photos.slice(0, showPhotos).map(photo => (
+                <img src={photo.thumbnailUrl} alt={photo.title} key={photo.id} />
+            ))}
+        </div>
+        {showPhotos < photos.length && (
+            <button onClick={handleShowMorePhotos}>המשך</button>
+        )}
     </div>
 }; export default Photos;

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, json } from 'react-router-dom';
 import { useParams, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-
+import './albums.css'
 const Album = () => {
     const [userAlbums, setUserAlbums] = useState([]);
     const { id } = useParams();
@@ -25,17 +25,13 @@ const Album = () => {
         }
         //  }
     }, []);
-    // const onclick(id){
-    //     console.log("onclick");
-    //     if(id){
-    //     navigate(`albums/${id}/photos`);
-    //     }
-    // }
+
     return <div>
-        {userAlbums.map(album => (<div>
-            {/* <button onClick={onclick(album.id)}>{album.title}</button> */}
-            <Link to={`./photos`}>{album.title}</Link>
-        <br/>
-        </div>))}
+        {userAlbums.map(album => (<div key={album.id}>
+    <div className="album-box">
+      <Link to={`${album.id}/photos`}>{album.title}</Link>
+    </div>
+    <br />
+  </div>))}
     </div>
 }; export default Album;
