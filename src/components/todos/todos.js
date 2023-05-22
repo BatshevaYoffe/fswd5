@@ -1,8 +1,8 @@
 import { Outlet, json, useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {useParams, Link, Navigate, useNavigate } from 'react-router-dom';
+import { useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-
+import './todos.css'
 const Todos = (props) => {
     // const [user, setMyObject] = useState({});
     const [userTodos, setUserTodos] = useState([]);
@@ -15,21 +15,21 @@ const Todos = (props) => {
 
     useEffect(() => {
         // if ((user && user.id)) {
-            console.log(id);
+        console.log(id);
 
-            const objectData = JSON.parse(localStorage.getItem('myUserTodos'));
-            if (objectData) {
-                setUserTodos(objectData);
-            }
-            else {
-                fetch(`https://jsonplaceholder.typicode.com/users/${id}/todos`)
-                    .then(response => response.json())
-                    .then(data => {
-                        setUserTodos(data);
-                        localStorage.setItem("myUserTodos", JSON.stringify(data));
-                    })
-                    .catch(error => console.log(error));
-            }
+        const objectData = JSON.parse(localStorage.getItem('myUserTodos'));
+        if (objectData) {
+            setUserTodos(objectData);
+        }
+        else {
+            fetch(`https://jsonplaceholder.typicode.com/users/${id}/todos`)
+                .then(response => response.json())
+                .then(data => {
+                    setUserTodos(data);
+                    localStorage.setItem("myUserTodos", JSON.stringify(data));
+                })
+                .catch(error => console.log(error));
+        }
         // }
     }, []);
 
@@ -68,28 +68,27 @@ const Todos = (props) => {
         setUserTodos(newUserTodos);
     })
 
-    return (<div>
-            {/* <h2>Active Users {user.name}</h2> */}
-            <select onChange={handlerChangeSelect}>
-                <option value="serial" > serial </option>
-                <option value="execution"> execution </option>
-                <option value="alphabetical"> alphabetical </option>
-                <option value="random"> random </option>
-            </select>
-            <ul>
-                {userTodos.map(todos => (
-                    <li key={todos.userId}>
-                        <input
-                            type="checkbox"
-                            checked={todos.completed}
-                            onChange={() => handlerChange(todos.id)}
-                        />
-                        <span>{todos.title}</span>
-                    </li>
-                ))}
-            </ul>
-        </div>
-        );
+    return (<div className="todo-list">
+        <select className="todo-sort" onChange={handlerChangeSelect}>
+            <option value="serial" > serial </option>
+            <option value="execution"> execution </option>
+            <option value="alphabetical"> alphabetical </option>
+            <option value="random"> random </option>
+        </select>
+        <ul className="todo-items">
+            {userTodos.map(todos => (
+                <li key={todos.userId}>
+                    <input
+                        type="checkbox"
+                        checked={todos.completed}
+                        onChange={() => handlerChange(todos.id)}
+                    />
+                    <span className={todos.completed ? '' : 'completed'}>{todos.title}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+    );
 };
 
 export default Todos;

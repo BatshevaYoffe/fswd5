@@ -5,32 +5,83 @@ import { useParams, BrowserRouter as Router, Routes, Route } from 'react-router-
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Photos = () => {
-    const { id } = useParams();
-    const [photos, setPhotos] = useState([]);
-    const [showPhotos, setShowedPhotos] = useState(5); //  מספר התמונות המוצג בכל שלב ניתן לשנות
+    //     const { id } = useParams();
+    //     const [photos, setPhotos] = useState([]);
+    //     const [showPhotos, setShowedPhotos] = useState(5); //  מספר התמונות המוצג בכל שלב ניתן לשנות
 
+
+    //     useEffect(() => {
+    //         console.log(id);
+    //         fetch(`https://jsonplaceholder.typicode.com/album/${id}/photos`)
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 setPhotos(data);
+    //             })
+
+    //     }, []);
+    //     const handleShowMorePhotos = () => {
+    //         setShowedPhotos(prevPhotos => prevPhotos + 5); // הוספת 5 תמונות נוספות בכל לחיצה
+    //     };
+
+    //     return <div>
+    //         <div>
+    //             {photos.slice(0, showPhotos).map(photo => (
+    //                 <img src={photo.thumbnailUrl} alt={photo.title} key={photo.id} />
+    //             ))}
+    //         </div>
+    //         {showPhotos < photos.length && (
+    //             <button onClick={handleShowMorePhotos}>המשך</button>
+    //         )}
+    //     </div>
+    // };
+    const { id } = useParams();
+
+    const [photos, setPhotos] = useState([]);
+    //  const [currentPage, setCurrentPage] = useState(1);
+    const [photosPerPage, setPhotosPerPage] = useState(10);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log(id);
-        fetch(`https://jsonplaceholder.typicode.com/album/${id}/photos`)
-            .then(response => response.json())
-            .then(data => {
-                setPhotos(data);
-            })
+        const fetchPhotos = async () => {
+            setIsLoading(true);
+            try {
+                await fetch(`https://jsonplaceholder.typicode.com/album/${id}/photos?_limit=${photosPerPage}`)
+                .then(response => response.json())
+                .then(data => {
+                        setPhotos(data);
+                        setIsLoading(true);
+                    })
+            }
+            catch (error) {
+                console.error(error);
+                setIsLoading(false);
+            }
 
-    }, []);
-    const handleShowMorePhotos = () => {
-        setShowedPhotos(prevPhotos => prevPhotos + 5); // הוספת 5 תמונות נוספות בכל לחיצה
+        };
+        fetchPhotos();
+    }, [id, photosPerPage]);
+
+    const loadMorePhotos = () => {
+        console.log(photosPerPage);
+        setPhotosPerPage(prev => prev + 10)
+        //    setCurrentPage(prevPage => prevPage + 1);
     };
 
-    return <div>
+    return (
         <div>
-            {photos.slice(0, showPhotos).map(photo => (
-                <img src={photo.thumbnailUrl} alt={photo.title} key={photo.id} />
-            ))}
+            <h1>Photos</h1>
+            <div className="photos-container">
+                {photos.map(photo => (
+                    <img key={photo.id} src={photo.thumbnailUrl} alt={photo.title} />
+                ))}
+            </div>
+            {/* {isLoading && <p>Loading...</p>}
+            {!isLoading && ( */}
+                <button onClick={loadMorePhotos} >
+                    {/* disabled={isLoading}> */}
+                    Load More Photos
+                </button>
+            {/* )} */}
         </div>
-        {showPhotos < photos.length && (
-            <button onClick={handleShowMorePhotos}>המשך</button>
-        )}
-    </div>
+    );
 }; export default Photos;
