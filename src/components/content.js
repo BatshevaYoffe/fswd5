@@ -60,8 +60,8 @@ const Content = () => {
         <Link to={`todos`}>Todos</Link>
         <br />
 
-        <Link to={`photos`}>Photos</Link>
-        <br />
+        {/* <Link to={`photos`}>Photos</Link>
+        <br /> */}
 
         <Link to="/" onClick={deleteUser}>Logout</Link>
         <Outlet />

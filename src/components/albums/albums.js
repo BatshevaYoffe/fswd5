@@ -25,17 +25,16 @@ const Album = () => {
         }
         //  }
     }, []);
-onclick=()=>{
-    console.log("onclick");
-    // navigate('./photos');
-
-}
+    // const onclick(id){
+    //     console.log("onclick");
+    //     if(id){
+    //     navigate(`albums/${id}/photos`);
+    //     }
+    // }
     return <div>
         {userAlbums.map(album => (<div>
-<button onClick={onclick}>{album.title}</button>
-        {/* <Link to={`/albums/photos/${album.id}`}>{album.title}</Link> */}
-        {/* <Link to={`../photos`}>{album.title}</Link> */}
-
+            {/* <button onClick={onclick(album.id)}>{album.title}</button> */}
+            <Link to={`./photos`}>{album.title}</Link>
         <br/>
         </div>))}
     </div>
