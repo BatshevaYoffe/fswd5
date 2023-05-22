@@ -7,25 +7,18 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 const Photos = () => {
     const [userAlbums, setUserAlbums] = useState([]);
     const { id } = useParams();
-    const [photos, setPhotos] = React.useState([]);
+    const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
-        // const objectData = JSON.parse(localStorage.getItem('myUserAlbums'));
-        // if (objectData) {
-        //     setUserAlbums(objectData);
-        // }
-        // else {
-            const albumId = window.location.pathname.split('/').pop();
-            fetch(`https://jsonplaceholder.typicode.com/users/${id}/albums`)
+        fetch(`https://jsonplaceholder.typicode.com/album/6/photos`)
             .then(response => response.json())
             .then(data => {
                 setPhotos(data);
-                // localStorage.setItem("myUserAlbums", JSON.stringify(data));
             })
-        // }
-        //  }
+
     }, []);
 
-    return <div>
-photossssssss    </div>
+    return <div><h1>{photos.thumbnailUrl}</h1>
+        <div>{photos.map(photos => (<img src={photos.thumbnailUrl} alt={photos.title}></img>))}</div>
+    </div>
 }; export default Photos;
