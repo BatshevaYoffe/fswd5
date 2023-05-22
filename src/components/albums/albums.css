@@ -4,4 +4,29 @@
     margin-bottom: 10px;
     display: inline-block;
   }
+  .album-icon {
+    width: 20px; /* גודל האייקון */
+    height: 20px;
+    margin-right: 5px; /* מרווח מימין ליד הטקסט */
+    vertical-align: middle; /* ליווי אנכי במרכז השורה */
+  }
+  .link-box {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
   
+  .link-square {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .album-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+      
