@@ -82,7 +82,7 @@ const Todos = (props) => {
                             checked={todos.completed}
                             onChange={() => handlerChange(todos.id)}
                         />
-                        <span>{todos.title}</span>
+                        <span >{todos.title}</span>
                     </li>
                 ))}
             </ul>

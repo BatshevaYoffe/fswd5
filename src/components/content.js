@@ -21,7 +21,7 @@ const Content = () => {
     return (
         <div>
         <header>{user.username}</header>
-        <Link to="posts">Posts</Link>
+        <Link to={`posts/${user.id}`}>Posts</Link>
         <br />
         <Link to={`albums/${user.id}`}>Albums</Link>
         <br />
