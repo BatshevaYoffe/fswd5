@@ -30,9 +30,9 @@ const Login = () => {
                 for (let i in json) {
                     const pass = g(json[i].address.geo.lat);
                     if (json[i].username === inputsN.name && pass === inputsP.password) {
-                        
                         localStorage.setItem("myData", JSON.stringify(json[i]));
-                        navigate('/content');
+                        console.log(json[i].id);
+                        navigate(`/content/user/${json[i].id}`);
                         break;
                     }
                 }

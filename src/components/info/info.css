@@ -1,0 +1,41 @@
+.user-profile {
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+  }
+  
+  .user-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .username,
+  .email,
+  .phone,
+  .website {
+    margin-bottom: 5px;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .address-street,
+  .address-suite,
+  .address-city,
+  .address-zipcode {
+    margin-bottom: 5px;
+  }
+  
+  .address-geo {
+    margin-bottom: 10px;
+  }
+  
+  .company-name,
+  .company-catchphrase,
+  .company-bs {
+    margin-bottom: 5px;
+  }
+  

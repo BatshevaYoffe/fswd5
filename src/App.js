@@ -9,17 +9,22 @@ import Todos from './components/todos/todos';
 import Album from './components/albums/albums';
 import Post from './components/posts/posts';
 import Info from './components/info/info';
+import Photos from './components/photos/photos';
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="content" element={<Content />}>
-          <Route path="albums/:id" element={<Album />} />
-          <Route path="posts/:id" element={<Post />} />
+        <Route path="content/user/:id" element={<Content />}>
+          <Route path="albums" element={<Album />} />
+          <Route path="./photos" element={<Photos />} />
+          <Route path="posts" element={<Post />} />
           <Route path="info" element={<Info />} />
-          <Route path="todos/:id" element={<Todos />} />
+          <Route path="todos" element={<Todos />} />
+
+          {/* <Route path="albums/:id" element={<Album />} /> */}
+          <Route path="albums/:id/photos" element={<Photos />} />
 
         </Route>
       </Routes>
