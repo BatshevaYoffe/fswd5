@@ -6,10 +6,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
+
 const Post = (props) => {
 
     const [userPosts, setuserPosts] = useState([]);
     const { id } = useParams();
+    const [showResults, setShowResults] = React.useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         // if ((user && user.id)) {
@@ -70,12 +73,14 @@ const Post = (props) => {
     //event.currentTarget.style.color = 'white';
   };
 
-  const handleClickComments = ((idUser) => {
+  const handleClickComments = ((event,idUser) => {
     console.log(idUser);
     let result = userPosts.find(({ id }) => id === idUser);
-    return <div><p>{result.body}</p></div>
-
-
+    let comments= result.body;
+    console.log(comments);
+    console.log(event);
+    //event.currentTarget.value= comments;
+    //return <div><p>{result.body}</p></div>
 })
 
     return (    <div>
@@ -86,9 +91,12 @@ const Post = (props) => {
                             type="button"
                             //name= {post.userId}
                             value= "..."
-                            onClick={() => handleClickComments(post.id)} 
+                            onClick={() => handleClickComments(this,post.id)} 
                         />        
                         <span onClick={handleClick}>{post.title}</span>
+                        <input type="button" value="Search" onClick={() => setShowResults(true)} />
+                        { showResults ? <div><Link to={`${post.id}/comments`}>{post.title}</Link></div> : null }
+                        
                     </li>
                 ))}
             </ul>
