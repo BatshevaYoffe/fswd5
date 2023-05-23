@@ -1,0 +1,13 @@
+.photos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+  }
+  
+  .photo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  

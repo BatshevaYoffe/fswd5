@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import './style.css';
+import './photos.css';
 import { Outlet, json } from 'react-router-dom';
 import { useParams, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -37,15 +37,14 @@ const Photos = () => {
     const { id } = useParams();
 
     const [photos, setPhotos] = useState([]);
-    //  const [currentPage, setCurrentPage] = useState(1);
     const [photosPerPage, setPhotosPerPage] = useState(10);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchPhotos = async () => {
+        const fetchPhotos =  () => {
             setIsLoading(true);
             try {
-                await fetch(`https://jsonplaceholder.typicode.com/album/${id}/photos?_limit=${photosPerPage}`)
+                fetch(`https://jsonplaceholder.typicode.com/album/${id}/photos?_limit=${photosPerPage}`)
                 .then(response => response.json())
                 .then(data => {
                         setPhotos(data);

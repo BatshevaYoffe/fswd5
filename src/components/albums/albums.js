@@ -28,10 +28,17 @@ const Album = () => {
 
     return <div>
         {userAlbums.map(album => (<div key={album.id}>
-    <div className="album-box">
-      <Link to={`${album.id}/photos`}>{album.title}</Link>
-    </div>
-    <br />
-  </div>))}
+            <div className="album-box">
+                <Link to={`${album.id}/photos`} className="link-square">
+                    <img
+                        src="https://png.pngtree.com/png-vector/20230228/ourmid/pngtree-image-line-icon-vector-png-image_6623891.png"
+                        alt="אייקון אלבום"
+                        className="album-icon"
+                    />                              
+                    {album.title}
+                </Link>
+            </div>
+            <br />
+        </div>))}
     </div>
 }; export default Album;
