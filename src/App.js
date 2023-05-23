@@ -10,6 +10,7 @@ import Album from './components/albums/albums';
 import Post from './components/posts/posts';
 import Info from './components/info/info';
 import Photos from './components/photos/photos';
+import Comments from './components/comments/comments';
 export default function App() {
   return (
     <Router>
@@ -18,11 +19,17 @@ export default function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="content/user/:id" element={<Content />}>
           <Route path="albums" element={<Album />} />
+<<<<<<< HEAD
+=======
+          <Route path="./photos" element={<Photos />} />
+          <Route path="./comments" element={<Comments />} />
+>>>>>>> b6c10141342cd93cb3c8cdb4c0df817567689505
           <Route path="posts" element={<Post />} />
           <Route path="info" element={<Info />} />
           <Route path="todos" element={<Todos />} />
 
           <Route path="albums/:id/photos" element={<Photos />} />
+          <Route path="posts/:id/comments" element={<Comments />} />
 
         </Route>
       </Routes>
