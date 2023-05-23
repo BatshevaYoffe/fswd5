@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, json } from 'react-router-dom';
 import { useParams, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import './comments.css'
 
 const Comments = () => {
     const { id } = useParams();
@@ -19,8 +20,10 @@ const Comments = () => {
                 .catch(error => console.log(error));
              }, [id]);
     return(
-        <div id="results" className="search-results">
-            <ul>
+        <div >
+            <h1 className='comments'>Comments</h1>
+
+            <ul className='comments-items'>
                 {userComments.map(com => (
                     <li key={com.Id}>
                          

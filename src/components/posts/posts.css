@@ -1,0 +1,27 @@
+.posts-items {
+    list-style-type: none;
+    padding: 0;
+    color: gray
+  }
+  
+  .posts-items li {
+    margin-bottom: 5px;
+  }
+
+  .posts-items li span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .post {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: gray
+  }
+  
+.linkComment{
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+}  

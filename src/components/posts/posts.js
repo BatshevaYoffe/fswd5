@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import { Link, Navigate, useNavigate } from 'react-router-dom';
 import {useParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-
+import './posts.css'
 
 const Post = (props) => {
 
@@ -84,13 +84,14 @@ const Post = (props) => {
 })
 
     return (    <div>
-        <ul>
+        <h1  className="post">POSTS</h1>
+        <ul className="posts-items">
                 {userPosts.map(post => (
                     <li key={post.userId}>
                          
-                        { <span onClick={handleClick}>{post.title} {"   "}</span> }
+                        { <span onClick={handleClick}>{post.title} {" "}</span> }
                        
-                        <Link to={`${post.id}/comments`}>{"..."}</Link>
+                        <Link className='linkComment' to={`${post.id}/comments`}>{"  ...  "}</Link>
                     </li>
                 ))}
             </ul>
