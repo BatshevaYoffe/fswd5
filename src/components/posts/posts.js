@@ -87,16 +87,10 @@ const Post = (props) => {
         <ul>
                 {userPosts.map(post => (
                     <li key={post.userId}>
-                         <input
-                            type="button"
-                            //name= {post.userId}
-                            value= "..."
-                            onClick={() => handleClickComments(this,post.id)} 
-                        />        
-                        <span onClick={handleClick}>{post.title}</span>
-                        <input type="button" value="Search" onClick={() => setShowResults(true)} />
-                        { showResults ? <div><Link to={`${post.id}/comments`}>{post.title}</Link></div> : null }
-                        
+                         
+                        { <span onClick={handleClick}>{post.title}</span> }
+                       
+                        <Link to={`${post.id}/comments`}>{"..."}</Link>
                     </li>
                 ))}
             </ul>
