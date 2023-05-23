@@ -39,48 +39,5 @@ const Content = () => {
                 <Outlet />
             </div>
         </div>
-        // <nav className="top-menu">
-        //     <div className="user-profile">
-        //         <span className="username">{user.username}</span>
-        //     </div>
-        //     <ul className="menu-options">
-        //         <li>
-        //             <Link to={`todos`}>Todos</Link>
-        //         </li>
-        //         <li>
-        //             <Link to={`posts`}>Posts</Link>
-        //         </li>
-        //         <li>
-        //             <Link to={`albums`}>Albums</Link>
-        //         </li>
-        //         <li>
-        //             <Link to="info" >Info</Link>
-        //         </li>
-        //         {/* <li>
-        //   <Link to="/" onClick={deleteUser}>Logout</Link>
-        //   </li> */}
-        //         {/* <Outlet /> */}
-        //     </ul>
-        //     <div className="page-content">
-        //         <Outlet />
-        //     </div>
-        //     <button className="logout-button" onClick={deleteUser}>
-        //         Logout
-        //     </button>
-        // </nav>
-        //     <div>
-        //     <header>{user.username}</header>
-        //     <Link to="posts">Posts</Link>
-        //     <br />
-        //     <Link to={`albums`}>Albums</Link>
-        //     <br />
-        //     <br />
-        //     <Link to="info" >Info</Link>
-        //     <br />
-        //     <Link to={`todos`}>Todos</Link>
-        //     <br />
-        //     <Link to="/" onClick={deleteUser}>Logout</Link>
-        //     <Outlet />
-        // </div>
     );
 }; export default Content;

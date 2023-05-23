@@ -27,6 +27,7 @@ const Album = () => {
     }, []);
 
     return <div>
+        <h2>Albums</h2>
         {userAlbums.map(album => (<div key={album.id}>
             <div className="album-box">
                 <Link to={`${album.id}/photos`} className="link-square">

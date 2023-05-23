@@ -69,7 +69,8 @@ const Todos = (props) => {
     })
 
     return (<div className="todo-list">
-        <select className="todo-sort" onChange={handlerChangeSelect}>
+        <h2>Todos:</h2>
+        <select className="todo-sort" onChange={handlerChangeSelect}> 
             <option value="serial" > serial </option>
             <option value="execution"> execution </option>
             <option value="alphabetical"> alphabetical </option>
