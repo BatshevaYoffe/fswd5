@@ -19,11 +19,8 @@ export default function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="content/user/:id" element={<Content />}>
           <Route path="albums" element={<Album />} />
-<<<<<<< HEAD
-=======
-          <Route path="./photos" element={<Photos />} />
+          {/* <Route path="./photos" element={<Photos />} /> */}
           <Route path="./comments" element={<Comments />} />
->>>>>>> b6c10141342cd93cb3c8cdb4c0df817567689505
           <Route path="posts" element={<Post />} />
           <Route path="info" element={<Info />} />
           <Route path="todos" element={<Todos />} />
