@@ -88,7 +88,7 @@ const Post = (props) => {
                 {userPosts.map(post => (
                     <li key={post.userId}>
                          
-                        { <span onClick={handleClick}>{post.title}</span> }
+                        { <span onClick={handleClick}>{post.title} {"   "}</span> }
                        
                         <Link to={`${post.id}/comments`}>{"..."}</Link>
                     </li>
